@@ -77,7 +77,16 @@ namespace MotionCaptureServer
                     OnReceiveData(data);
                 }
             };
-            port.Open();
+
+            try
+            {
+                port.Open();
+            }
+            catch (Exception ex)
+            {
+                connected = ConnectionState.Disconnected;
+                throw ex;
+            }
         }
 
     }

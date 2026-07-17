@@ -6,6 +6,7 @@ namespace MotionCaptureServer
         public MainWindow()
         {
             InitializeComponent();
+            DoubleBuffered = true;
         }
 
         /// <summary>
@@ -39,13 +40,28 @@ namespace MotionCaptureServer
 
         private void btnCOMConnect_Click(object sender, EventArgs e)
         {
-            string portName = lstCOMPorts.SelectedItem.ToString();
-            m.Connect(portName, (data) =>
+            if (lstCOMPorts.SelectedItem == null)
             {
-                Invoke(() => {
-                    lblCOMPortStatus.Text = $"Connected to {portName}. Packets received: {m.PacketsReceived}. Last: {data}";
+                lblCOMPortStatus.Text = "Please select a COM port to connect.";
+                return;
+            }
+            string portName = lstCOMPorts.SelectedItem.ToString();
+            try
+            {
+                m.Connect(portName, (data) =>
+                {
+                    Invoke(() =>
+                    {
+                        lblCOMPortStatus.Text = $"Connected to {portName}. Packets received: {m.PacketsReceived}. Last: {data}";
+                        lblCOMPortStatus.Invalidate();
+                    });
                 });
-            });
+                lblCOMPortStatus.Text = $"Connected to {portName}";
+            }
+            catch (Exception ex)
+            {
+                lblCOMPortStatus.Text = $"Error connecting to {portName}: {ex.Message}";
+            }
         }
     }
 }
