@@ -22,7 +22,11 @@ This data would need to be processed to:
 It would then stream rotation and position data via UDP so that anyone on the same network could receive motion capture data from any detected micro:bit
 Ideally it would also visualise the data for each micro:bit motion used for motion capture as a live line graph for each of X, Y and Z
 
+Relevant project: `MotionCaptureServer`
+
 ### Controlling 3d objects in Blender
 A python plugin for Blender would connect to the C# WinForms app and allow you to control the position and / or rotation of any 3d object. Different 3d objects should be controllable by different micro:bits
+
+Relevant file: Not started yet!
 
 
