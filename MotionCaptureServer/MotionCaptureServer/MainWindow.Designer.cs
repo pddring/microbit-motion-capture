@@ -40,22 +40,24 @@
             btnCOMConnect = new Button();
             btnCOMDisconnect = new Button();
             btnCOMRefresh = new Button();
-            tabPage2 = new TabPage();
+            tabGraphs = new TabPage();
+            graphLiveView = new ScottPlot.WinForms.FormsPlot();
             tabWindow.SuspendLayout();
             tabMicroBit.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
+            tabGraphs.SuspendLayout();
             SuspendLayout();
             // 
             // tabWindow
             // 
             tabWindow.Controls.Add(tabMicroBit);
-            tabWindow.Controls.Add(tabPage2);
+            tabWindow.Controls.Add(tabGraphs);
             tabWindow.Dock = DockStyle.Fill;
             tabWindow.Location = new Point(0, 0);
             tabWindow.Name = "tabWindow";
             tabWindow.SelectedIndex = 0;
-            tabWindow.Size = new Size(800, 450);
+            tabWindow.Size = new Size(1024, 632);
             tabWindow.TabIndex = 0;
             // 
             // tabMicroBit
@@ -64,7 +66,7 @@
             tabMicroBit.Location = new Point(4, 24);
             tabMicroBit.Name = "tabMicroBit";
             tabMicroBit.Padding = new Padding(3);
-            tabMicroBit.Size = new Size(792, 422);
+            tabMicroBit.Size = new Size(1016, 604);
             tabMicroBit.TabIndex = 0;
             tabMicroBit.Text = "Micro:bit connection";
             tabMicroBit.UseVisualStyleBackColor = true;
@@ -88,13 +90,13 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Size = new Size(786, 416);
+            tableLayoutPanel1.Size = new Size(1010, 598);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // lblCOMPortStatus
             // 
             lblCOMPortStatus.AutoSize = true;
-            lblCOMPortStatus.Location = new Point(120, 401);
+            lblCOMPortStatus.Location = new Point(154, 583);
             lblCOMPortStatus.Name = "lblCOMPortStatus";
             lblCOMPortStatus.Size = new Size(96, 15);
             lblCOMPortStatus.TabIndex = 6;
@@ -103,7 +105,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(3, 401);
+            label3.Location = new Point(3, 583);
             label3.Name = "label3";
             label3.Size = new Size(32, 15);
             label3.TabIndex = 5;
@@ -112,9 +114,9 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(3, 362);
+            label2.Location = new Point(3, 544);
             label2.Name = "label2";
-            label2.Size = new Size(72, 30);
+            label2.Size = new Size(115, 15);
             label2.TabIndex = 2;
             label2.Text = "Connection controls";
             // 
@@ -123,9 +125,9 @@
             lstCOMPorts.Dock = DockStyle.Fill;
             lstCOMPorts.FormattingEnabled = true;
             lstCOMPorts.ItemHeight = 15;
-            lstCOMPorts.Location = new Point(120, 3);
+            lstCOMPorts.Location = new Point(154, 3);
             lstCOMPorts.Name = "lstCOMPorts";
-            lstCOMPorts.Size = new Size(663, 356);
+            lstCOMPorts.Size = new Size(853, 538);
             lstCOMPorts.TabIndex = 0;
             // 
             // label1
@@ -144,9 +146,9 @@
             flowLayoutPanel1.Controls.Add(btnCOMDisconnect);
             flowLayoutPanel1.Controls.Add(btnCOMRefresh);
             flowLayoutPanel1.Dock = DockStyle.Fill;
-            flowLayoutPanel1.Location = new Point(120, 365);
+            flowLayoutPanel1.Location = new Point(154, 547);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(663, 33);
+            flowLayoutPanel1.Size = new Size(853, 33);
             flowLayoutPanel1.TabIndex = 4;
             // 
             // btnCOMConnect
@@ -178,21 +180,30 @@
             btnCOMRefresh.UseVisualStyleBackColor = true;
             btnCOMRefresh.Click += btnCOMRefresh_Click;
             // 
-            // tabPage2
+            // tabGraphs
             // 
-            tabPage2.Location = new Point(4, 24);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(792, 422);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "tabPage2";
-            tabPage2.UseVisualStyleBackColor = true;
+            tabGraphs.Controls.Add(graphLiveView);
+            tabGraphs.Location = new Point(4, 24);
+            tabGraphs.Name = "tabGraphs";
+            tabGraphs.Padding = new Padding(3);
+            tabGraphs.Size = new Size(1016, 604);
+            tabGraphs.TabIndex = 1;
+            tabGraphs.Text = "Motion Capture";
+            tabGraphs.UseVisualStyleBackColor = true;
+            // 
+            // graphLiveView
+            // 
+            graphLiveView.Dock = DockStyle.Fill;
+            graphLiveView.Location = new Point(3, 3);
+            graphLiveView.Name = "graphLiveView";
+            graphLiveView.Size = new Size(1010, 598);
+            graphLiveView.TabIndex = 0;
             // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1024, 632);
             Controls.Add(tabWindow);
             Name = "MainWindow";
             Text = "Microbit Motion Capture Streamer";
@@ -202,6 +213,7 @@
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             flowLayoutPanel1.ResumeLayout(false);
+            tabGraphs.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -209,7 +221,7 @@
 
         private TabControl tabWindow;
         private TabPage tabMicroBit;
-        private TabPage tabPage2;
+        private TabPage tabGraphs;
         private TableLayoutPanel tableLayoutPanel1;
         private Label label2;
         private ListBox lstCOMPorts;
@@ -220,5 +232,6 @@
         private FlowLayoutPanel flowLayoutPanel1;
         private Button btnCOMDisconnect;
         private Button btnCOMRefresh;
+        private ScottPlot.WinForms.FormsPlot graphLiveView;
     }
 }

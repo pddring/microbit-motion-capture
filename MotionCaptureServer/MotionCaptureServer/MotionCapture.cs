@@ -67,7 +67,7 @@ namespace MotionCaptureServer
         public void Connect(string PortName, Action<string> OnReceiveData) {
             Disconnect();
             connected = ConnectionState.Connected;
-            SerialPort port = new SerialPort(PortName, 115200);
+            SerialPort port = new SerialPort(PortName, 115200, Parity.None, 8, StopBits.One);
             port.DataReceived += (object sender, SerialDataReceivedEventArgs e) =>
             {
                 string data = port.ReadLine();
